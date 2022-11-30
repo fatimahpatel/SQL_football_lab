@@ -81,8 +81,11 @@ SELECT COUNT(*) FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (sea
 
 ```sql
 <!-- Copy solution here -->
+-- find the division code for premier league
+SELECT code FROM divisions WHERE name = 'Premier League'
 
-
+--
+SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) DESC;
 ```
 
 10) In which division and which season were the most goals scored?
