@@ -39,7 +39,7 @@ SELECT COUNT(*) FROM matches WHERE division_code = 'D1' AND (hometeam = 'Freibur
 5) Find the unique names of the teams which include the word "City" in their name (as entered in the database)
 
 ```sql
-<!-- Copy solution here -->
+SELECT DISTINCT hometeam FROM matches WHERE hometeam LIKE '%City%' 
 
 
 ```
@@ -47,7 +47,11 @@ SELECT COUNT(*) FROM matches WHERE division_code = 'D1' AND (hometeam = 'Freibur
 6) How many different teams have played in matches recorded in a French division?
 
 ```sql
-<!-- Copy solution here -->
+-- have to find the division codes for France
+SELECT code FROM divisions WHERE country = 'France';
+
+-- use the codes to count the number of different teams
+SELECT COUNT (DISTINCT hometeam) FROM matches WHERE division_code = 'F1' OR division_code = 'F2';
 
 
 ```
@@ -55,7 +59,8 @@ SELECT COUNT(*) FROM matches WHERE division_code = 'D1' AND (hometeam = 'Freibur
 7) Have Huddersfield played Swansea in the period covered?
 
 ```sql
-<!-- Copy solution here -->
+
+SELECT * FROM matches WHERE (hometeam = 'Huddersfield' AND awayteam = 'Swansea') OR (hometeam = 'Swansea' AND awayteam = 'Huddersfield');
 
 
 ```
@@ -63,7 +68,11 @@ SELECT COUNT(*) FROM matches WHERE division_code = 'D1' AND (hometeam = 'Freibur
 8) How many draws were there in the Eredivisie between 2010 and 2015?
 
 ```sql
-<!-- Copy solution here -->
+<!-- find code for Eredivisie
+SELECT code FROM divisions WHERE name = 'Eredivisie';
+
+-- filter result to check Eredivisie division code, where ftr only has draws and season is between 2010 and 2015
+SELECT COUNT(*) FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (season >= 2010 AND season <= 2015); 
 
 
 ```
