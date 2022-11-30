@@ -74,6 +74,9 @@ SELECT code FROM divisions WHERE name = 'Eredivisie';
 -- filter result to check Eredivisie division code, where ftr only has draws and season is between 2010 and 2015
 SELECT COUNT(*) FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (season >= 2010 AND season <= 2015); 
 
+-- or do SELECT COUNT(*) FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (season BETWEEN 2010 AND 2015);
+
+
 
 ```
 
@@ -86,6 +89,8 @@ SELECT code FROM divisions WHERE name = 'Premier League'
 
 --
 SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) DESC;
+
+-- SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) fthg DESC;
 ```
 
 10) In which division and which season were the most goals scored?
@@ -93,6 +98,8 @@ SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) DESC;
 ```sql
 <!-- Copy solution here -->
 
+--answer from review'
+SELECT division_code, season, SUM(fthg), SUM(ftag) FROM matches GROUP BY division_code, season ORDER BY SUM(fthg) + SUM(ftag) DESC LIMIT 1;
 
 ```
 
